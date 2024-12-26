@@ -4,6 +4,7 @@ import br.com.cod3r.cm.excecao.ExplosaoException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -57,4 +58,35 @@ public class CampoTest {
         boolean resultado = campo.adicionarVizinho(vizinho);
         assertTrue(!resultado);
     }
+    @Test
+    void testeValorPadraoAtributoMarcado() {
+        assertFalse(campo.isMarcado());
+    }
+    @Test
+    void testeAlternarMarcacao() {
+        campo.alternarMarcacao();
+        assertTrue(campo.isMarcado());
+    }
+    @Test
+    void testeAlternarMarcacaoDuasChamadas() {
+        campo.alternarMarcacao();
+        campo.alternarMarcacao();
+        assertFalse(campo.isMarcado());
+    }
+    @Test
+    void testeAbrirNaoMinadoNaoMarcado() {
+        assertTrue(campo.abrir());
+    }
+    @Test
+    void testeAbrirNaoMinadoMarcado() {
+        campo.alternarMarcacao();
+        assertFalse(campo.abrir());
+    }
+    @Test
+    void testeAbrirMinadoMarcado() {
+        campo.alternarMarcacao();
+        campo.minar();
+        assertFalse(campo.abrir());
+    }
+
 }
