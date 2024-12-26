@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Campo {
-
     private final int linha;
     private final int coluna;
 
-    private boolean aberto;
-    private boolean minado;
-    private boolean marcado;
+    private boolean aberto = false;
+    private boolean minado = false;
+    private boolean marcado = false;
+
+    public Campo(int linha, int coluna) {
+        this.linha = linha;
+        this.coluna = coluna;
+    }
 
     private List<Campo> vizinhos = new ArrayList<>();
 
@@ -18,7 +22,9 @@ public class Campo {
         this.linha = linha;
         this.coluna = coluna;
     }
+
     boolean adicionarVizinho(Campo vizinho){
 
     }
+
 }
