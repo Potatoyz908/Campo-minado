@@ -121,4 +121,17 @@ public class Campo {
         minado = false;
         marcado = false;
     }
+    public String toString(){
+        if(marcado){
+            return "⛳";
+        } else if(aberto && minado){
+            return "\uD83D\uDCA3";
+        } else if(aberto && minasNaVizinhanca() > 0){
+            return Long.toString(minasNaVizinhanca());
+        } else if(aberto){
+            return " ";
+        } else {
+            return "❓";
+        }
+    }
 }

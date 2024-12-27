@@ -122,5 +122,74 @@ public class CampoTest {
 
         assertTrue(campo22.isAberto() && campo11.isFechado());
     }
+    @Test
+    void testeReiniciar() {
+        campo.alternarMarcacao();
+        campo.abrir();
+        campo.minar();
 
+        campo.reiniciar();
+
+        assertTrue(campo.isFechado() && !campo.isMarcado() && !campo.isMinado());
+    }
+    @Test
+    void testeToStringMarcado() {
+        campo.alternarMarcacao();
+        assertEquals("⛳", campo.toString());
+    }
+    @Test
+    void testeToStringAbertoMinado() {
+        campo.abrir();
+        campo.minar();
+        assertEquals("\uD83D\uDCA3", campo.toString());
+    }
+    @Test
+    void testeToStringAbertoNaoMinado() {
+        campo.abrir();
+        assertEquals(" ", campo.toString());
+    }
+    @Test
+    void testeToStringFechado() {
+        assertEquals("❓", campo.toString());
+    }
+    @Test
+    void testeMinasNaVizinhanca0() {
+        assertEquals(0, campo.minasNaVizinhanca());
+    }
+    @Test
+    void testeMinasNaVizinhanca3() {
+        Campo campo22 = new Campo(2, 2);
+        Campo campo11 = new Campo(1, 1);
+        campo22.adicionarVizinho(campo11);
+        Campo campo12 = new Campo(1, 2);
+        campo22.adicionarVizinho(campo12);
+        Campo campo21 = new Campo(2, 1);
+        campo22.adicionarVizinho(campo21);
+
+        campo.adicionarVizinho(campo22);
+
+        campo12.minar();
+        campo21.minar();
+
+        assertEquals(2, campo22.minasNaVizinhanca());
+    }
+    @Test
+    void testeMinasNaVizinhanca3ComMarcacao() {
+        Campo campo22 = new Campo(2, 2);
+        Campo campo11 = new Campo(1, 1);
+        campo22.adicionarVizinho(campo11);
+        Campo campo12 = new Campo(1, 2);
+        campo22.adicionarVizinho(campo12);
+        Campo campo21 = new Campo(2, 1);
+        campo22.adicionarVizinho(campo21);
+
+        campo.adicionarVizinho(campo22);
+
+        campo12.minar();
+        campo21.minar();
+
+        campo11.alternarMarcacao();
+
+        assertEquals(2, campo22.minasNaVizinhanca());
+    }
 }
