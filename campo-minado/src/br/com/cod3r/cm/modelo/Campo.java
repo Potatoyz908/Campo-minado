@@ -70,6 +70,7 @@ public class Campo {
     public boolean isMarcado() {
         return marcado;
     }
+
     public boolean isAberto() {
         return aberto;
     }
@@ -85,7 +86,7 @@ public class Campo {
         return coluna;
     }
 
-    public void setAberto(boolean aberto) {
+    void setAberto(boolean aberto) {
         this.aberto = aberto;
     }
 
