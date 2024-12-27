@@ -69,5 +69,56 @@ public class Campo {
     public boolean isMarcado() {
         return marcado;
     }
+    public boolean isAberto() {
+        return aberto;
+    }
+    public boolean isFechado() {
+        return !isAberto();
+    }
 
+    public int getLinha() {
+        return linha;
+    }
+
+    public int getColuna() {
+        return coluna;
+    }
+
+    public void setAberto(boolean aberto) {
+        this.aberto = aberto;
+    }
+
+    public boolean isMinado() {
+        return minado;
+    }
+
+    public void setMinado(boolean minado) {
+        this.minado = minado;
+    }
+
+    public void setMarcado(boolean marcado) {
+        this.marcado = marcado;
+    }
+
+    public List<Campo> getVizinhos() {
+        return vizinhos;
+    }
+
+    public void setVizinhos(List<Campo> vizinhos) {
+        this.vizinhos = vizinhos;
+    }
+
+    boolean objetivoAlcancado(){
+        boolean desvendado = !minado && aberto;
+        boolean protegido = minado && marcado;
+        return desvendado || protegido;
+    }
+    long minasNaVizinhanca(){
+        return vizinhos.stream().filter(v -> v.minado).count();
+    }
+    void reiniciar(){
+        aberto = false;
+        minado = false;
+        marcado = false;
+    }
 }
