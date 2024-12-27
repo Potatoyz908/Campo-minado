@@ -63,12 +63,14 @@ public class Campo {
         return vizinhos.stream().noneMatch(v -> v.minado);
     }
 
-    void minar(){
+    void minar() {
         minado = true;
     }
+
     public boolean isMarcado() {
         return marcado;
     }
+
     public boolean isAberto() {
         return aberto;
     }
@@ -84,7 +86,7 @@ public class Campo {
         return coluna;
     }
 
-    public void setAberto(boolean aberto) {
+    void setAberto(boolean aberto) {
         this.aberto = aberto;
     }
 
